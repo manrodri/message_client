@@ -9,6 +9,15 @@ export const selectSong = (song) => {
     }
 };
 
+
+
+export const currentUser = (user) => {
+    return {
+        type: 'SELECT_USER',
+        payload: user
+    }
+}
+
 export const fetchConversations = () => async dispatch => {
     const response = await chatsAPI.get('/conversations')
     dispatch({type: 'FETCH_CONVERSATIONS', payload: response.data})
