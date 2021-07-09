@@ -9,8 +9,6 @@ export const selectSong = (song) => {
     }
 };
 
-
-
 export const currentUser = (user) => {
     return {
         type: 'SELECT_USER',

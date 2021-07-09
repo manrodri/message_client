@@ -9,12 +9,9 @@ class ConversationsList extends React.Component {
     }
 
     renderParticipants = (participants) => {
-        return participants.map( participant => {
-            if(!participant){
-                return null
-            }
+        return participants.map( (participant, index) => {
             return (
-                <div className={`content`}>
+                <div className={`content`} key={index}>
                     {participant}
                 </div>
             )
@@ -22,7 +19,6 @@ class ConversationsList extends React.Component {
     }
 
      renderConversations(){
-        console.log(this.props.conversations)
         return this.props.conversations.map(convo => {
             return(
                 <div className={`item`} key={convo.id}>
@@ -30,7 +26,7 @@ class ConversationsList extends React.Component {
                     <div className="content">
                         <div className="description">
                             <h2>{convo.id}</h2>
-                            {/*{this.renderParticipants(convo.participants)}*/}
+                            {this.renderParticipants(convo.participants)}
                         </div>
                     </div>
                 </div>
