@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
-import {fetchConversations} from "../actions";
+import {fetchConversation, fetchConversations} from "../actions";
 
 class ConversationsList extends React.Component {
 
@@ -21,7 +21,7 @@ class ConversationsList extends React.Component {
      renderConversations(){
         return this.props.conversations.map(convo => {
             return(
-                <div className={`item`} key={convo.id}>
+                <div className={`item`} key={convo.id} onClick={()=> this.props.fetchConversation(convo.id)} >
                     <i className="large middle aligned icon user"/>
                     <div className="content">
                         <div className="description">
@@ -48,4 +48,6 @@ const mapStateToProps = state => {
     return { conversations: state.conversations }
 }
 
-export default connect(mapStateToProps, {fetchConversations: fetchConversations}) (ConversationsList);
+export default connect(mapStateToProps,
+    {fetchConversations: fetchConversations})
+(ConversationsList);

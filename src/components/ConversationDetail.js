@@ -1,9 +1,20 @@
 import React from 'react'
+import {fetchConversation} from "../actions";
+import {connect} from "react-redux";
 
-const ConversationDetail = () => {
+const ConversationDetail = ({selectedConversationId}) => {
+    console.log(`selectedConversationId: ${selectedConversationId}`)
+    if(!selectedConversationId){
+        return (
+            <div>Choose a conversation</div>
+        )
+    }
+
     return(
-        <div>ConversationsDetail</div>
+        <div>{selectedConversationId}</div>
     )
 }
 
-export default ConversationDetail;
+
+
+export default connect(null, fetchConversation) (ConversationDetail);

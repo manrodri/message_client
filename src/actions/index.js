@@ -1,13 +1,5 @@
-import axios from "axios";
 import chatsAPI from "../api/chatsAPI";
-
-export const selectSong = (song) => {
-    // return an action
-    return {
-        type: "SONG_SELECTED",
-        payload: song
-    }
-};
+import _ from "lodash";
 
 export const currentUser = (user) => {
     return {
@@ -26,3 +18,15 @@ export const fetchConversation = (conversationId) => async dispatch => {
     dispatch({type: 'FETCH_CONVERSATION', payload: response.data})
 }
 
+
+export const fetchConversationsAndConversation = () => async (dispatch, getState) => {
+    console.log('about to fetch posts')
+     const conversations = await dispatch(fetchConversations())
+     _.chain(getState().conversations)
+        .map('id')
+        .uniq()
+        .forEach(id => dispatch(fetchConversation(id)))
+        .value()
+
+
+}

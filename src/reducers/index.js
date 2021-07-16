@@ -1,5 +1,4 @@
 import { combineReducers} from "redux";
-import {act} from "@testing-library/react";
 
 export const conversationsReducer = (conversations=[], action) => {
     const {type, payload} = action;
@@ -28,16 +27,10 @@ export const tempUserReducer = () => {
     }
 }
 
-export const selectedConversationReducer = (selectedConversation = null, action) =>{
-    const {type, payload} = action;
-    if(type === 'FETCH_CONVERSATION'){
-        return payload
-    }
-    return selectedConversation
-}
+
 
 export default combineReducers({
     conversations: conversationsReducer,
     currentUser: tempUserReducer,
-    selectedConversation: selectedConversationReducer
+    selectedConversationId: selectedConversationReducer
 })
